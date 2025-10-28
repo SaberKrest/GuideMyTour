@@ -118,7 +118,11 @@ TourismGuideByGemini/
    * Right-click the file and select Run 'Main.main()'.  
    * The application will start, and the tourism.db file will be created in the root directory.
 
+<<<<<<< HEAD
 ### **Admin Access**
+=======
+git clone [https://github.com/SaberKrest/Tourism-Guide]
+>>>>>>> cd5b178 (added screenshots of the program.)
 
 To sign up as an admin, use the following special admin code on the Sign Up page:  
 Admin Code: ADMIN1S23
