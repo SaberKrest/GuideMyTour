@@ -12,7 +12,7 @@ import java.awt.*;
 
 /**
  * A sign-in panel for user authentication.
- * NOW HANDLES REAL LOGIN LOGIC.
+ * MODIFIED: Reverted to previous UI style (blue buttons, light gray bg).
  */
 public class SignInPanel extends JPanel {
 
@@ -22,14 +22,21 @@ public class SignInPanel extends JPanel {
 
     private JTextField usernameField;
     private JPasswordField passwordField;
-    private JLabel errorLabel; // To show login errors
+    private JLabel errorLabel;
+
+    // --- MODIFICATION: Removed brand colors ---
+    // private final Color BUTTON_BG = ...
+    // private final Color BUTTON_FG = ...
 
     public SignInPanel(MainFrame mainFrame, DatabaseManager dbManager, UserService userService) {
         this.mainFrame = mainFrame;
         this.dbManager = dbManager;
         this.userService = userService;
-        setLayout(new GridBagLayout()); // Center the content
-        setBackground(new Color(241, 245, 249)); // Light gray background
+        setLayout(new GridBagLayout());
+
+        // --- MODIFICATION: Reverted background color ---
+        setBackground(new Color(241, 245, 249));
+        // --- End of Modification ---
 
         JPanel loginBox = new JPanel(new GridBagLayout());
         loginBox.setBackground(Color.WHITE);
@@ -40,88 +47,74 @@ public class SignInPanel extends JPanel {
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridwidth = 1;
         gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.ipady = 15; // Make components taller
-        gbc.weightx = 1.0;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
 
-        // Title
         JLabel titleLabel = new JLabel("Sign In");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        gbc.gridwidth = 2; // Span 2 columns
-        gbc.insets = new Insets(0, 0, 30, 0);
         loginBox.add(titleLabel, gbc);
 
-        // Reset gbc
+        gbc.gridy++;
         gbc.gridwidth = 1;
-        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.EAST;
+        loginBox.add(new JLabel("Username:"), gbc);
 
-        // Username Label
-        JLabel userLabel = new JLabel("Username:");
-        userLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        gbc.gridy++;
+        loginBox.add(new JLabel("Password:"), gbc);
+
+        gbc.gridx = 1;
         gbc.gridy = 1;
-        loginBox.add(userLabel, gbc);
-
-        // Username Field
+        gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
         usernameField = new JTextField(20);
-        usernameField.setFont(new Font("Arial", Font.PLAIN, 16));
-        gbc.gridy = 2;
         loginBox.add(usernameField, gbc);
 
-        // Password Label
-        JLabel passLabel = new JLabel("Password:");
-        passLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        gbc.gridy = 3;
-        gbc.insets = new Insets(10, 0, 0, 0);
-        loginBox.add(passLabel, gbc);
-
-        // Password Field
+        gbc.gridy++;
         passwordField = new JPasswordField(20);
-        passwordField.setFont(new Font("Arial", Font.PLAIN, 16));
-        gbc.gridy = 4;
-        gbc.insets = new Insets(10, 0, 10, 0);
+        passwordField.addActionListener(e -> performLogin()); // Allow login on Enter
         loginBox.add(passwordField, gbc);
 
-        // Error Label
-        errorLabel = new JLabel(" "); // Placeholder for alignment
-        errorLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        errorLabel.setForeground(Color.RED);
-        gbc.gridy = 5;
+        gbc.gridx = 0;
+        gbc.gridy++;
         gbc.gridwidth = 2;
-        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.NONE;
+
+        errorLabel = new JLabel(" ");
+        errorLabel.setForeground(Color.RED);
         loginBox.add(errorLabel, gbc);
 
-        // Sign In Button
-        JButton signInButton = new JButton("Sign In");
-        styleButton(signInButton);
-        gbc.gridy = 6;
-        gbc.gridwidth = 2; // Span 2 columns
-        gbc.insets = new Insets(20, 0, 10, 0);
-        signInButton.addActionListener(e -> performLogin());
-        loginBox.add(signInButton, gbc);
+        gbc.gridy++;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Back Button
+        // --- MODIFICATION: Apply original button style ---
+        JButton loginButton = new JButton("Sign In");
+        styleButton(loginButton);
+        loginButton.addActionListener(e -> performLogin());
+        loginBox.add(loginButton, gbc);
+        // --- End of Modification ---
+
+        gbc.gridy++;
         JButton backButton = new JButton("Back to Welcome");
-        backButton.setFont(new Font("Arial", Font.PLAIN, 14));
-        backButton.setForeground(new Color(59, 130, 246));
-        backButton.setOpaque(false);
-        backButton.setContentAreaFilled(false);
-        backButton.setBorderPainted(false);
-        backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        gbc.gridy = 7;
-        gbc.insets = new Insets(0, 0, 0, 0);
+        // Back button uses default theme style
         backButton.addActionListener(e -> mainFrame.showPanel("welcome"));
         loginBox.add(backButton, gbc);
 
-        add(loginBox); // Add the login box to the panel
+        add(loginBox);
     }
 
+    /**
+     * MODIFICATION: Reverted to original blue button style.
+     */
     private void styleButton(JButton button) {
         button.setFont(new Font("Arial", Font.BOLD, 18));
-        button.setBackground(new Color(59, 130, 246));
+        button.setBackground(new Color(59, 130, 246)); // Blue
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
+        // button.setBorderPainted(false); // Removed
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.setPreferredSize(new Dimension(100, 50));
     }
@@ -135,22 +128,20 @@ public class SignInPanel extends JPanel {
             return;
         }
 
-        // --- Real JDBC Validation ---
         User user = dbManager.getUser(username);
 
         if (user != null && PasswordHashing.checkPassword(password, user.getPasswordHash())) {
             // SUCCESS
             System.out.println("Login successful for user: " + user.getUsername() + " (Role: " + user.getRole() + ")");
-            errorLabel.setText(" "); // Clear error
-            passwordField.setText(""); // Clear password field
+            errorLabel.setText(" ");
+            passwordField.setText("");
 
-            // 1. Log user into the service
             userService.login(user);
 
-            // 2. Load dashboard data (will be configured for the user)
-            mainFrame.getDashboardPanel().loadDestinations("default");
+            // Re-load theme in case user had a preference
+            mainFrame.updateTheme();
 
-            // 3. Navigate to dashboard
+            mainFrame.getDashboardPanel().loadDestinations("default");
             mainFrame.showPanel("dashboard");
         } else {
             // FAILURE
@@ -159,3 +150,4 @@ public class SignInPanel extends JPanel {
         }
     }
 }
+
