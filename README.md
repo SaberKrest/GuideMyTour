@@ -1,7 +1,13 @@
+
+
+
 # 🏞️ Tourism Guide Desktop Application
 
 A **Java Swing-based desktop application** for exploring and managing tourist destinations.  
 It features **Admin and User roles**, a modern UI, and a **local SQLite database** for data persistence.
+
+
+
 
 ---
 
@@ -189,4 +195,12 @@ Integration with live travel APIs (Google Maps, TripAdvisor, etc.)
 Export trip plans to PDF
 
 ## 📸 Application Preview
+
+![welcome_screen](https://github.com/user-attachments/assets/5f9df363-558c-4d76-9dd2-a0db6a87f579)
+![add_destination](https://github.com/user-attachments/assets/53501260-43dd-4444-ba9e-223adc742c7e)
+![destination_detail](https://github.com/user-attachments/assets/49f862dd-415c-428b-8190-f6e863bc0113)
+![saved_places](https://github.com/user-attachments/assets/ee5bdc93-60b6-4819-b334-43b8ca9de33b)
+
+
+
 
