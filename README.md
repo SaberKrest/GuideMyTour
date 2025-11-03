@@ -1,128 +1,192 @@
-# **Tourism Guide Desktop Application**
+# 🏞️ Tourism Guide Desktop Application
 
-This is a Java Swing-based desktop application for managing and browsing tourist destinations. It features a dual-role system (Admin and User) with distinct functionalities, a clean, modern UI, and a local SQLite database for data persistence.
+A **Java Swing-based desktop application** for exploring and managing tourist destinations.  
+It features **Admin and User roles**, a modern UI, and a **local SQLite database** for data persistence.
 
-## **Application Preview**
+---
 
-## **Features**
+## 🚀 Application Overview
 
-* **User Authentication:** Secure Sign Up and Sign In system for users and admins.  
-* **Guest Mode:** Allows browsing destinations without an account.  
-* **Admin Role:**  
-  * **Add** new tourist destinations with details, prices, and images.  
-  * **Edit** existing destination information.  
-  * **Delete** destinations from the database.  
-* **User Role:**  
-  * Browse and search all available destinations.  
-  * **Save** favorite destinations to a personal "My Saved Places" list.  
-  * **Write Reviews:** Submit ratings (1-5 stars) and comments for destinations.  
-* **Dynamic UI:**  
-  * Sort destinations by popularity or price.  
-  * Search for destinations by name or location.  
-  * View detailed destination pages with image galleries, tabbed info (Overview, Tourist Spots, etc.), and user reviews.  
-  * Change application theme (Light Mode / Dark Mode).
+The **Tourism Guide** app allows users to browse, search, and save favorite destinations, while administrators can manage all destination data — including adding new locations, editing existing ones, and moderating reviews.  
 
-## **Design and Implementation**
+It combines **object-oriented programming**, **Swing GUI design**, and **modular architecture** for scalability and maintainability.
 
-This project was built using core Java principles and a clean, modular structure.
+---
 
-* **Use of OOP Concepts:** The application is built on OOP principles. Data is encapsulated in model classes (Destination, User, Review), and behavior is managed by service (UserService) and manager (DatabaseManager) classes.  
-* **GUI Design (Java Swing):** The user interface is built entirely with Java Swing, using a CardLayout to manage different panels (views). Custom components like CardFactory and WrapLayout are used to create a dynamic and responsive UI.  
-* **Event Handling:** All user interactions are handled through Swing's event listeners (ActionListener, MouseAdapter, etc.) to trigger database operations and panel navigation.  
-* **Use of Packages:** The project is organized into distinct packages (gui, database, model, user, util) to separate concerns (e.g., UI logic from database logic), making the code easier to maintain and understand.  
-* **Database:** A local SQLite database is used for all data persistence, managed by the DatabaseManager class which centralizes all SQL queries.  
-* **Error Handling:** User input is validated (e.g., checking for empty fields, number formats) and database errors are handled with try-catch blocks and user-friendly JOptionPane dialogs.
+## ✨ Features
 
-## **Tech Stack**
+### 🔐 User Authentication
+- Secure **Sign Up / Sign In** system for both **users** and **admins**.  
+- Optional **Guest Mode** for browsing without logging in.
 
-* **Language:** Java (JDK 11+)  
-* **UI Framework:** Java Swing  
-* **Look and Feel:** [FlatLaf](https://www.formdev.com/flatlaf/) (for modern light and dark themes)  
-* **Database:** SQLite (using sqlite-jdbc driver)  
-* **Password Hashing:** [jBCrypt](https://github.com/patrickfav/bcrypt)
+### 👑 Admin Role
+- **Add** new destinations with descriptions, prices, and images.  
+- **Edit** or **Delete** existing destinations.  
+- Manage database entries directly through the UI.
 
-## **Project Structure**
+### 🙋‍♂️ User Role
+- **Browse** all tourist destinations.  
+- **Search** by name or location.  
+- **Sort** destinations by **popularity** or **price**.  
+- **Save** favorite destinations to “My Saved Places.”  
+- **Write Reviews** — rate (1–5 stars) and comment on destinations.
 
-Here is the high-level structure of the project's source code:
+### 🎨 Dynamic UI
+- Modern interface built with **Java Swing + FlatLaf** for Light/Dark themes.  
+- **Tabbed view** for each destination (Overview, Tourist Spots, Reviews, etc.).  
+- **Responsive card-based layout** with smooth navigation.  
+- **Theme customization** (Light / Dark mode).  
 
-TourismGuideByGemini/  
-├── images/                \# Stores Admin-uploaded destination images  
-├── lib/                   \# Contains external .jar libraries  
-│   ├── flatlaf-x.x.jar  
-│   ├── jbcrypt-x.x.jar  
-│   └── sqlite-jdbc-x.x.x.jar  
-├── src/  
-│   └── com/  
-│       └── tourism/  
-│           ├── database/  
-│           │   └── DatabaseManager.java     \# Handles all SQLite database operations  
-│           ├── gui/  
-│           │   ├── components/            \# Reusable UI components  
-│           │   │   ├── CardFactory.java  
-│           │   │   └── WrapLayout.java  
-│           │   ├── AddPlacePanel.java  
-│           │   ├── DashboardPanel.java  
-│           │   ├── DestinationDetailPanel.java  
-│           │   ├── MainFrame.java         \# The main JFrame holding all panels  
-│           │   ├── SavedPlacesPanel.java  
-│           │   ├── SettingsPanel.java  
-│           │   ├── SignInPanel.java  
-│           │   ├── SignUpPanel.java  
-│           │   └── WelcomePanel.java  
-│           ├── main/  
-│           │   └── Main.java                \# Main entry point of the application  
-│           ├── model/  
-│           │   ├── Destination.java  
-│           │   ├── Review.java  
-│           │   └── User.java  
-│           ├── resources/  
-│           │   ├── assets/                \# Icons, fonts, and background images  
-│           │   │   ├── back-arrow.png  
-│           │   │   ├── placeholder.jpg  
-│           │   │   ├── star.png  
-│           │   │   ├── tick-mark.png  
-│           │   │   ├── wallpaper-bg.png  
-│           │   │   └── welcome-bg.png  
-│           │   └── fonts/  
-│           │       └── SAMAN\_\_\_.TTF  
-│           ├── user/  
-│           │   └── UserService.java         \# Manages the current user's session  
-│           └── util/  
-│               └── PasswordHashing.java   \# Utility for hashing and checking passwords  
-├── .gitignore  
-├── README.md              \# This file  
-├── tourism.db             \# The SQLite database file (created on first run)  
-└── TourismGuide.iml       \# IntelliJ project file
+---
 
-## **Setup & Running Guide**
+## 🧠 Design & Implementation   
 
-1. **Prerequisites:**  
-   * Java JDK (version 11 or higher).  
-   * A Java IDE (e.g., IntelliJ IDEA or Eclipse).  
-2. **Clone the Repository:**  
-   git clone \[\[https://github.com/SaberKrest/GuideMyTour\](https://github.com/SaberKrest/GuideMyTour)\]
+The project is fully modular, following **OOP principles** and **MVC-like architecture**.
 
-3. **Configure IDE (IntelliJ IDEA Example):**  
-   * Open the cloned project folder in IntelliJ.  
-   * **Set JDK:** Go to File \> Project Structure... \> Project and select your JDK (11 or newer).  
-   * **Add Libraries:**  
-     1. Go to File \> Project Structure... \> Modules \> Dependencies.  
-     2. Click the \+ icon and select JARs or directories....  
-     3. Navigate to the /lib folder in the project and select all the .jar files (flatlaf, jbcrypt, sqlite-jdbc).  
-     4. Click Apply and OK.  
-   * **Mark Resources Folder:**  
-     1. In the Project explorer, right-click the src/com/tourism/resources folder.  
-     2. Select Mark Directory as \> Resources Root. This is crucial for the app to find fonts and icons.  
-4. **Run the Application:**  
-   * Navigate to src/com/tourism/main/Main.java.  
-   * Right-click the file and select Run 'Main.main()'.  
-   * The application will start, and the tourism.db file will be created in the root directory.
+| Layer | Responsibility |
+|-------|----------------|
+| **Model** | Data entities (Destination, User, Review) |
+| **Service / Manager** | Business logic and database operations |
+| **GUI** | Swing-based presentation layer |
+| **Utility** | Password hashing, layout helpers, and reusable components |
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 ### **Admin Access**
 =======
 git clone [https://github.com/SaberKrest/Tourism-Guide]
 >>>>>>> cd5b178 (added screenshots of the program.)
+=======
+## 🧩 Key Concepts
+- **Encapsulation & Modularity:** Each functionality is isolated within its package.  
+- **Event Handling:** All user actions are handled via Swing’s `ActionListener`, `MouseAdapter`, etc.  
+- **Error Handling:** Input validation, exceptions, and friendly `JOptionPane` messages.  
+- **Database Persistence:** Managed by `DatabaseManager` (SQLite-based).  
 
-To sign up as an admin, use the following special admin code on the Sign Up page:  
+---
+
+## 🛠️ Tech Stack
+
+| Component | Technology |
+|------------|-------------|
+| **Language** | Java (JDK 11+) |
+| **UI Framework** | Java Swing |
+| **Look & Feel** | [FlatLaf](https://www.formdev.com/flatlaf/) |
+| **Database** | SQLite (via `sqlite-jdbc` driver) |
+| **Password Hashing** | [jBCrypt](https://github.com/patrickfav/bcrypt) |
+
+---
+
+## 📁 Project Structure
+
+```
+GuideMyTour/
+├── images/                                  # Admin-uploaded destination images
+├── lib/                                     # External .jar libraries
+│ ├── flatlaf-x.x.jar
+│ ├── jbcrypt-x.x.jar
+│ └── sqlite-jdbc-x.x.x.jar
+├── src/
+│ └── com/
+│ └── tourism/
+│ ├── database/
+│ │ └── DatabaseManager.java                 # Handles SQLite database operations
+│ ├── gui/
+│ │ ├── components/                          # Custom reusable UI components
+│ │ │ ├── CardFactory.java
+│ │ │ └── WrapLayout.java
+│ │ ├── AddPlacePanel.java
+│ │ ├── DashboardPanel.java
+│ │ ├── DestinationDetailPanel.java
+│ │ ├── MainFrame.java                       # Main JFrame managing all panels
+│ │ ├── SavedPlacesPanel.java
+│ │ ├── SettingsPanel.java
+│ │ ├── SignInPanel.java
+│ │ ├── SignUpPanel.java
+│ │ └── WelcomePanel.java
+│ ├── main/
+│ │ └── Main.java                            # Application entry point
+│ ├── model/
+│ │ ├── Destination.java
+│ │ ├── Review.java
+│ │ └── User.java
+│ ├── resources/
+│ │ ├── assets/                              # Images, icons, and backgrounds
+│ │ │ ├── back-arrow.png
+│ │ │ ├── placeholder.jpg
+│ │ │ ├── star.png
+│ │ │ ├── tick-mark.png
+│ │ │ ├── wallpaper-bg.png
+│ │ │ └── welcome-bg.png
+│ │ └── fonts/
+│ │ └── SAMAN___.TTF
+│ ├── user/
+│ │ └── UserService.java                     # Manages user sessions
+│ └── util/
+│ └── PasswordHashing.java                   # Password encryption utilities
+├── .gitignore
+├── README.md
+├── tourism.db                               # SQLite database (auto-created on first run)
+└── TourismGuide.iml                         # IntelliJ project configuration
+```
+
+## ⚙️ Setup & Installation
+
+### 1. Prerequisites
+- Java **JDK 11+** installed.
+- A Java IDE like **IntelliJ IDEA** or **Eclipse**.
+
+### 2. Clone the Repository
+```bash
+git clone https://github.com/SaberKrest/GuideMyTour.git
+```
+
+### 3. Configure Your IDE (IntelliJ Example)
+Set Up JDK
+
+File → Project Structure → Project → SDK → select JDK 11 or newer
+
+Add Required Libraries
+
+Go to File → Project Structure → Modules → Dependencies
+
+Click + → JARs or Directories
+
+Add all .jar files from the /lib folder (flatlaf, jbcrypt, sqlite-jdbc)
+
+Click Apply and OK
+
+Mark Resources Folder
+
+Right-click src/com/tourism/resources
+
+Select Mark Directory as → Resources Root
+
+### 4. Run the Application
+
+Navigate to:
+src/com/tourism/main/Main.java
+
+Right-click → Run 'Main.main()'
+
+The application will launch and automatically create tourism.db in the project root.
+
+## 🔑 Admin Access
+
+To create an admin account, enter the following Admin Code during sign-up:
+>>>>>>> 736591a36c8bb985132c0c6a2ff78a50e9bd1af9
+
 Admin Code: ADMIN1S23
+
+## 🧩 Future Enhancements
+
+Cloud database integration for online access
+
+AI-based destination recommendations
+
+Integration with live travel APIs (Google Maps, TripAdvisor, etc.)
+
+Export trip plans to PDF
+
+## 📸 Application Preview
+
