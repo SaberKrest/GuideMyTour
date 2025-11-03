@@ -56,13 +56,10 @@ The project is fully modular, following **OOP principles** and **MVC-like archit
 | **GUI** | Swing-based presentation layer |
 | **Utility** | Password hashing, layout helpers, and reusable components |
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ### **Admin Access**
-=======
+
 git clone [https://github.com/SaberKrest/Tourism-Guide]
->>>>>>> cd5b178 (added screenshots of the program.)
-=======
+
 ## 🧩 Key Concepts
 - **Encapsulation & Modularity:** Each functionality is isolated within its package.  
 - **Event Handling:** All user actions are handled via Swing’s `ActionListener`, `MouseAdapter`, etc.  
@@ -180,7 +177,6 @@ The application will launch and automatically create tourism.db in the project r
 ## 🔑 Admin Access
 
 To create an admin account, enter the following Admin Code during sign-up:
->>>>>>> 736591a36c8bb985132c0c6a2ff78a50e9bd1af9
 
 Admin Code: ADMIN1S23
 
